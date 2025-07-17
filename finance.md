@@ -1,7 +1,82 @@
+[toc]
 ## Leetcode 
 **代码随想录**
 ### 数组
-#### 二分查找
+
+#### 3.滑动窗口
+```python
+# pseudo code
+left = 0
+ans = 0 # or bound
+s = 0 # sum
+
+for right, x in enumerate(nums):
+  iterate for s and x
+  while not cond:
+    s -= nums[left]
+    left += 1
+  iterate for ans
+return ans # if ...
+```
+
+
+209.长度最小的子数组
+**求最短**
+```python
+left, n = 0, len(nums)
+s, ans = 0, n+1 # ans > n
+
+for right, x in enumerate(nums): # x: nums[right]
+  s += x # s: nums[left] +...+ nums[right]
+  while s >= target:
+    ans = min(ans, right-left+1) # s satisfy condition
+    s -= nums[left] # minus nums[left]
+    left += 1
+
+return ans if ans <= n else 0
+```
+
+**越短越合法**
+713. 乘积小于 K 的子数组
+```python
+# if prod[left, right] < k
+left, ans = 0, 0
+n = len(nums)
+prod = 1
+
+if k <= 1: # else prod >= k will get error
+  return 0
+
+for right, x in enumerate(nums):
+  prod *= nums[right]
+  while prod >= k:
+    prod /= nums[left]
+    left += 1
+  ans += right - left + 1
+return ans
+```
+
+3. 无重复字符的最长子串
+```python
+left = 0
+ans = 0
+cnt = Counter() # hashmap char int
+
+for right, c in enumerate(s):
+  cnt[c] += 1 # don't use dict
+  while cnt[c] > 1: # guarantee left <= right
+    cnt[s[left]] -= 1
+    left += 1
+  ans = min(ans, right - left + 1)
+return ans
+```
+
+
+
+
+
+
+#### 4.二分查找
 
 判断是否满足条件(蓝), 
 ```python
@@ -16,8 +91,6 @@ while l+1 != r:
   return l or r # 取决于输出最大值or最小值
 ```
 
-#### 滑动窗口
-209.长度最小的子数组
 
 
 
@@ -27,7 +100,12 @@ while l+1 != r:
 #### 快慢指针
 27.移除元素
 
+```python
+# pseudo code
 
+
+
+```
 
 
 

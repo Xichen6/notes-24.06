@@ -81,7 +81,7 @@ N-S 方程
 ![alt text](image.png)
 
 由于要学习一类 a(x), 首先利用 Gauss 随机随机场采样 $\{ a_j \}_{j = 1}^{N}$，对应得到 $\{ u_j \}_{j = 1}^{N}.$
-损失函数
+损失函数(实际上做不到)
 $$
 \min_{\theta \in \Theta} \mathbb{E}_{a \sim \mu}[C(G(a, \theta), G^{\dagger}(a))]
 $$
